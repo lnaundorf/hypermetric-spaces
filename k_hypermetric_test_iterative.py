@@ -23,16 +23,11 @@ def ft(mtt):
 	mtt.he.set_norm_config("operator")
 
 
-[dim, k] = read_argv() 
+[dim, k, norm] = read_argv() 
 if dim == -1:
 	exit(0)
 
 target_trace = 0.0
-#norm = "diff"
-#norm = "abs"
-norm = "nuclear"
-#norm = "operator"
-#norm = "euclidean"
 
 mtt = MultithreadedTest(dim, k, norm)#, final_transform=ft)#, target_trace=target_trace)
 mtt.run()

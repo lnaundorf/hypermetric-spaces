@@ -9,18 +9,29 @@ from numpy.linalg import eigh, svd
 import matrix_norms
 
 def read_argv():
-	if len(sys.argv) < 3:
-		print "Give dimension and k as argument"
-		return -1,-1
+	if len(sys.argv) < 4:
+		print "Give dimension d, degree of hypermetric inequality k and name of norm as arguments"
+		print "possible norm names are:"
+		print "diff: The sum of the absolute values of differences of the eigenvalues of symmetric matrices"
+		print "abs: The sum of absolute values of the eigenvalues of symmetric matrices"
+		print "nuclear: The sum of the singular values of a square matrix"
+		print "operator: The largest singular value of a square matrix"
+		print "euclidean: usual euclidean norm"
+		return -1,-1, -1
 	else:
 		try:
 			dim = int(sys.argv[1])
 			k = int(sys.argv[2])
+			norm = sys.argv[3]
 			
-			return dim, k
+			if norm not in ["diff", "abs", "nuclear", "operator", "euclidean"]:
+				print "The value of %s is not a valid norm name" % norm
+				return -1, -1, -1
+			
+			return dim, k, norm
 		except:
 			print "The param %s or %s is not an integer" % (sys.argv[1], sys.argv[2])
-			return -1,-1
+			return -1,-1, -1
 
 def get_vector_print(v, eigval):
 	ret = "("

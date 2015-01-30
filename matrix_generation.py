@@ -55,8 +55,6 @@ class MatrixGenerator:
 		
 			for i in range(dim):
 				B[i][i] -= tr_min
-			
-		#print "Test trace, before = %.3f, after = %.3f" % (tr, trace(B))
 		
 		return B
 		
